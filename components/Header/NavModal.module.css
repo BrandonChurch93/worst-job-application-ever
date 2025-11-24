@@ -1,0 +1,161 @@
+/* ============================================
+   NAV MODAL - Funny "Coming Soon" Modal
+   ============================================ */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4);
+  background: rgba(10, 9, 8, 0.8);
+  backdrop-filter: blur(8px);
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  padding: var(--space-8);
+  background: rgba(28, 25, 23, 0.95);
+  backdrop-filter: blur(24px) saturate(150%);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-xl);
+  box-shadow:
+    0 0 0 1px rgba(217, 119, 6, 0.1),
+    0 24px 80px rgba(10, 9, 8, 0.9),
+    0 0 60px rgba(234, 88, 12, 0.08);
+  text-align: center;
+  animation: modalIn 0.3s var(--ease-bounce);
+}
+
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.closeButton {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-tertiary);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-smooth);
+}
+
+.closeButton:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.iconWrapper {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto var(--space-4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-amber);
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+  border-radius: var(--radius-lg);
+}
+
+.title {
+  font-size: var(--text-h3);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-3);
+  letter-spacing: -0.02em;
+}
+
+.body {
+  font-size: var(--text-body);
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: var(--space-4);
+}
+
+.footer {
+  font-size: var(--text-body-sm);
+  color: var(--text-tertiary);
+  font-style: italic;
+  margin-bottom: var(--space-6);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.actionButton {
+  width: 100%;
+  padding: var(--space-3) var(--space-6);
+  font-size: var(--text-button);
+  font-weight: 600;
+  color: white;
+  background: var(--gradient-primary);
+  border: none;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(234, 88, 12, 0.3);
+  transition: all var(--duration-fast) var(--ease-smooth);
+}
+
+.actionButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(234, 88, 12, 0.4);
+}
+
+.actionButton:active {
+  transform: translateY(0);
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 599px) {
+  .modal {
+    padding: var(--space-6);
+  }
+
+  .iconWrapper {
+    width: 56px;
+    height: 56px;
+  }
+
+  .iconWrapper svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .title {
+    font-size: var(--text-h4);
+  }
+
+  .body {
+    font-size: var(--text-body-sm);
+  }
+}

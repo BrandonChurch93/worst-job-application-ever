@@ -1,0 +1,231 @@
+.termsCard {
+  width: 100%;
+  max-width: 700px;
+  padding: var(--space-8);
+  border-radius: var(--radius-lg);
+  animation: slideUp 0.6s var(--ease-smooth) 0.3s backwards;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cardHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.headerIcon {
+  color: var(--primary-amber);
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.cardTitle {
+  font-size: var(--text-h3);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-1);
+}
+
+.cardSubtitle {
+  font-size: var(--text-body-sm);
+  color: var(--text-tertiary);
+}
+
+/* ===== SCROLL CONTAINER ===== */
+
+.scrollContainer {
+  max-height: 400px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: var(--space-6);
+  margin-bottom: var(--space-6);
+  background: rgba(68, 64, 60, 0.2);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  position: relative;
+}
+
+/* Custom scrollbar */
+.scrollContainer::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollContainer::-webkit-scrollbar-track {
+  background: rgba(68, 64, 60, 0.2);
+  border-radius: var(--radius-sm);
+}
+
+.scrollContainer::-webkit-scrollbar-thumb {
+  background: var(--gradient-primary);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--glow-orange);
+}
+
+.scrollContainer::-webkit-scrollbar-thumb:hover {
+  background: var(--gradient-primary-hover);
+}
+
+/* ===== TERMS CONTENT ===== */
+
+.termsContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.sectionTitle {
+  font-size: var(--text-body-lg);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.paragraph {
+  font-size: var(--text-body-sm);
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+/* ===== AGREEMENT SECTION ===== */
+
+.agreementSection {
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  cursor: pointer;
+  transition: opacity var(--duration-normal) var(--ease-smooth);
+}
+
+.checkboxLabel.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.checkbox {
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  margin-top: 2px;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  border: 2px solid var(--border-medium);
+  border-radius: var(--radius-sm);
+  background: rgba(68, 64, 60, 0.2);
+  position: relative;
+  transition: all var(--duration-fast) var(--ease-smooth);
+}
+
+.checkbox:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.checkbox:checked {
+  background: var(--gradient-primary);
+  border-color: var(--primary-orange);
+  box-shadow: var(--glow-orange);
+}
+
+.checkbox:checked::after {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 2px;
+  width: 6px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  animation: checkPop 0.3s var(--ease-bounce);
+}
+
+@keyframes checkPop {
+  0% {
+    opacity: 0;
+    transform: scale(0) rotate(45deg);
+  }
+  50% {
+    transform: scale(1.2) rotate(45deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(45deg);
+  }
+}
+
+.checkboxText {
+  font-size: var(--text-body);
+  font-weight: 500;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  user-select: none;
+}
+
+.scrollHint {
+  display: block;
+  font-size: var(--text-caption);
+  color: var(--text-disabled);
+  margin-top: var(--space-1);
+  font-style: italic;
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 768px) {
+  .termsCard {
+    padding: var(--space-6);
+  }
+
+  .scrollContainer {
+    max-height: 300px;
+    padding: var(--space-4);
+  }
+
+  .cardTitle {
+    font-size: var(--text-h4);
+  }
+
+  .sectionTitle {
+    font-size: var(--text-body);
+  }
+}
+
+@media (max-width: 480px) {
+  .termsCard {
+    padding: var(--space-4);
+  }
+
+  .cardHeader {
+    gap: var(--space-3);
+  }
+
+  .headerIcon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .scrollContainer {
+    max-height: 250px;
+  }
+
+  .checkboxText {
+    font-size: var(--text-body-sm);
+  }
+}

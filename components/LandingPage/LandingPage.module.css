@@ -1,0 +1,12 @@
+/* ============================================
+   LANDING PAGE - Container for all sections
+   ============================================ */
+
+.landingPage {
+  position: relative;
+  min-height: 100vh;
+  background: var(--bg-void);
+  overflow-x: hidden;
+}
+
+/* Future sections will be added and styled here */

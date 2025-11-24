@@ -1,0 +1,295 @@
+/* ============================================
+   MARQUEE SECTION - Infinite Scrolling Ticker
+   Premium 2025 Design with Warm Aesthetics
+   ============================================ */
+
+.marquee {
+  position: relative;
+  width: 100%;
+  background: var(--bg-dark);
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s var(--ease-smooth), transform 0.8s var(--ease-smooth);
+}
+
+.marquee.loaded {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== BORDER GLOW EFFECTS ===== */
+
+.borderGlow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(234, 88, 12, 0.3) 20%,
+    rgba(245, 158, 11, 0.5) 50%,
+    rgba(234, 88, 12, 0.3) 80%,
+    transparent 100%
+  );
+  z-index: 2;
+}
+
+.borderGlowBottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(234, 88, 12, 0.3) 20%,
+    rgba(245, 158, 11, 0.5) 50%,
+    rgba(234, 88, 12, 0.3) 80%,
+    transparent 100%
+  );
+  z-index: 2;
+}
+
+/* ===== EDGE FADE OVERLAYS ===== */
+
+.edgeFadeLeft,
+.edgeFadeRight {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 120px;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.edgeFadeLeft {
+  left: 0;
+  background: linear-gradient(
+    to right,
+    var(--bg-dark) 0%,
+    rgba(28, 25, 23, 0.8) 30%,
+    transparent 100%
+  );
+}
+
+.edgeFadeRight {
+  right: 0;
+  background: linear-gradient(
+    to left,
+    var(--bg-dark) 0%,
+    rgba(28, 25, 23, 0.8) 30%,
+    transparent 100%
+  );
+}
+
+/* ===== ROW DIVIDER ===== */
+
+.rowDivider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 5%,
+    var(--border-subtle) 20%,
+    var(--border-medium) 50%,
+    var(--border-subtle) 80%,
+    transparent 95%
+  );
+}
+
+/* ===== MARQUEE ROW ===== */
+
+.marqueeRow {
+  display: flex;
+  width: 100%;
+  padding: var(--space-4) 0;
+}
+
+/* Pause animation on hover for readability */
+.marqueeRow:hover .marqueeContent {
+  animation-play-state: paused;
+}
+
+/* ===== MARQUEE CONTENT (Animated Container) ===== */
+
+.marqueeContent {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 0;
+}
+
+/* Direction: Left (default) */
+.left .marqueeContent {
+  animation: scrollLeft 60s linear infinite;
+}
+
+/* Direction: Right */
+.right .marqueeContent {
+  animation: scrollRight 60s linear infinite;
+}
+
+/* Speed: Fast (Row 2) */
+.fast .marqueeContent {
+  animation-duration: 50s;
+}
+
+/* Speed: Slow */
+.slow .marqueeContent {
+  animation-duration: 80s;
+}
+
+/* ===== SCROLL ANIMATIONS ===== */
+
+@keyframes scrollLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes scrollRight {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* ===== MARQUEE ITEMS ===== */
+
+.marqueeItem {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.itemText {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--text-secondary);
+  padding: 6px 0;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+  cursor: default;
+}
+
+/* Hover effect on individual items */
+.marqueeItem:hover .itemText {
+  color: var(--text-primary);
+  text-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
+}
+
+/* ===== SEPARATOR DOT ===== */
+
+.separator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--space-4);
+  flex-shrink: 0;
+}
+
+.separatorDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--primary-amber);
+  opacity: 0.5;
+  box-shadow: 0 0 8px rgba(245, 158, 11, 0.4);
+  transition: opacity 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+/* Separator glow on adjacent item hover */
+.marqueeItem:hover + .marqueeItem .separatorDot,
+.marqueeItem:hover .separator .separatorDot {
+  opacity: 0.8;
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.6);
+  transform: scale(1.2);
+}
+
+/* ===== RESPONSIVE - TABLET ===== */
+
+@media (max-width: 900px) {
+  .marqueeRow {
+    padding: var(--space-3) 0;
+  }
+
+  .itemText {
+    font-size: 13px;
+  }
+
+  .separator {
+    padding: 0 var(--space-3);
+  }
+
+  .edgeFadeLeft,
+  .edgeFadeRight {
+    width: 80px;
+  }
+}
+
+/* ===== RESPONSIVE - MOBILE ===== */
+
+@media (max-width: 600px) {
+  .marqueeRow {
+    padding: var(--space-2) 0;
+  }
+
+  .itemText {
+    font-size: 12px;
+  }
+
+  .separator {
+    padding: 0 var(--space-2);
+  }
+
+  .separatorDot {
+    width: 4px;
+    height: 4px;
+  }
+
+  .edgeFadeLeft,
+  .edgeFadeRight {
+    width: 40px;
+  }
+}
+
+/* ===== REDUCED MOTION ===== */
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .marqueeContent {
+    animation: none !important;
+  }
+
+  /* Stack items vertically when animation is disabled */
+  .marqueeRow {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-2);
+  }
+
+  .marqueeContent:nth-child(2) {
+    display: none; /* Hide duplicate content */
+  }
+
+  .marqueeItem {
+    white-space: normal;
+  }
+}

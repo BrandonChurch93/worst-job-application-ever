@@ -1,0 +1,61 @@
+/* ============================================
+   LOGO COMPONENT - Angry Cow
+   M.O.O. - Mandatory Optional Overtime LLC
+   ============================================ */
+
+.logoWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.logo {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Steam animation */
+.steam {
+  animation: steamFloat 2s ease-in-out infinite;
+}
+
+@keyframes steamFloat {
+  0%, 100% {
+    opacity: 0.5;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translateY(-3px);
+  }
+}
+
+/* Eyebrow can animate on parent hover */
+.eyebrow {
+  transition: transform 0.3s ease;
+  transform-origin: center;
+}
+
+/* Hover effects - applied when parent logo link is hovered */
+.logoWrapper:hover .logo {
+  transform: scale(1.05);
+}
+
+.logoWrapper:hover .steam {
+  animation: steamAngry 0.5s ease-in-out infinite;
+}
+
+@keyframes steamAngry {
+  0%, 100% {
+    opacity: 0.7;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-5px);
+  }
+}

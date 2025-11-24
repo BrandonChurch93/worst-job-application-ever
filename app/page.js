@@ -1,95 +1,58 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+'use client';
 
+import useAppStore from '@/store/appStore';
+import LandingPage from '@/components/LandingPage/LandingPage';
+import TransitionText from '@/components/TransitionText/TransitionText';
+import CelebrationOverlay from '@/components/CelebrationOverlay/CelebrationOverlay';
+import StackingGame from '@/components/sections/StackingGame/StackingGame';
+import Configuration from '@/components/sections/Configuration/Configuration';
+import Terms from '@/components/sections/Terms/Terms';
+import Form from '@/components/sections/Form/Form';
+import Signature from '@/components/sections/Signature/Signature';
+import Captcha from '@/components/sections/Captcha/Captcha';
+import Success from '@/components/Success/Success';
+
+/**
+ * Main Application Page
+ *
+ * Handles view switching between:
+ * - Landing page
+ * - Transition text
+ * - Active section
+ * - Celebration overlay
+ * - Success screen
+ */
 export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>app/page.js</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const currentView = useAppStore((state) => state.currentView);
+  const transitionText = useAppStore((state) => state.transitionText);
+  const isCelebrating = useAppStore((state) => state.isCelebrating);
+  const currentSection = useAppStore((state) => state.currentSection);
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+  return (
+    <>
+      {/* Landing Page */}
+      {currentView === 'landing' && <LandingPage />}
+
+      {/* Transition Text */}
+      {currentView === 'transition' && <TransitionText text={transitionText} />}
+
+      {/* Active Section */}
+      {currentView === 'section' && (
+        <>
+          <StackingGame />
+          <Configuration />
+          <Terms />
+          <Form />
+          <Signature />
+          <Captcha />
+        </>
+      )}
+
+      {/* Success Screen */}
+      {currentView === 'success' && <Success />}
+
+      {/* Celebration Overlay */}
+      <CelebrationOverlay show={isCelebrating} />
+    </>
   );
 }

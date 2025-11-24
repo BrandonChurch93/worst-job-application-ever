@@ -1,0 +1,374 @@
+/* ============================================
+   COMPARISON SECTION
+   "Why Choose Us?"
+   Table comparing Us vs. Functional Employers
+   ============================================ */
+
+.section {
+  position: relative;
+  padding: var(--space-20) var(--space-6);
+  background: var(--bg-void);
+  overflow: hidden;
+}
+
+/* ===== BACKGROUND ===== */
+
+.backgroundGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1200px;
+  height: 700px;
+  background: radial-gradient(
+    ellipse,
+    rgba(234, 88, 12, 0.04) 0%,
+    rgba(245, 158, 11, 0.02) 50%,
+    transparent 70%
+  );
+  filter: blur(100px);
+  pointer-events: none;
+}
+
+/* ===== SECTION HEADER ===== */
+
+.header {
+  max-width: 700px;
+  margin: 0 auto var(--space-12);
+  text-align: center;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--primary-amber);
+  margin-bottom: var(--space-4);
+}
+
+.title {
+  font-size: clamp(28px, 6vw, 48px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  line-height: 1.1;
+  margin-bottom: var(--space-4);
+}
+
+.titleAccent {
+  background: linear-gradient(
+    135deg,
+    var(--primary-light) 0%,
+    var(--primary-amber) 50%,
+    var(--accent-gold) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  font-size: clamp(16px, 2vw, 18px);
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.subtitleNote {
+  color: var(--text-tertiary);
+  font-style: italic;
+}
+
+/* ===== TABLE WRAPPER ===== */
+
+.tableWrapper {
+  max-width: 900px;
+  margin: 0 auto var(--space-8);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  border: 1px solid var(--border-medium);
+  background: rgba(28, 25, 23, 0.6);
+  backdrop-filter: blur(20px);
+}
+
+/* ===== TABLE ===== */
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* ===== TABLE HEADER ===== */
+
+.headerRow {
+  background: rgba(28, 25, 23, 0.9);
+  border-bottom: 1px solid var(--border-medium);
+}
+
+.featureHeader,
+.companyHeader {
+  padding: var(--space-4) var(--space-4);
+  text-align: left;
+  vertical-align: bottom;
+}
+
+.featureHeader {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  width: 35%;
+}
+
+.companyHeader {
+  text-align: center;
+  width: 32.5%;
+}
+
+.companyName {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.companyHeader:nth-child(2) .companyName {
+  color: var(--primary-amber);
+}
+
+.companySubtext {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-disabled);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ===== TABLE ROWS ===== */
+
+.row {
+  border-bottom: 1px solid var(--border-subtle);
+  opacity: 0;
+  transform: translateX(-20px);
+  transition:
+    opacity 0.4s var(--ease-smooth),
+    transform 0.4s var(--ease-smooth),
+    background 0.2s ease;
+  transition-delay: var(--delay, 0s);
+}
+
+.row.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.row:last-child {
+  border-bottom: none;
+}
+
+.row:hover {
+  background: rgba(234, 88, 12, 0.05);
+}
+
+/* ===== TABLE CELLS ===== */
+
+.featureCell {
+  padding: var(--space-3) var(--space-4);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.row:hover .featureCell {
+  color: var(--text-primary);
+}
+
+.valueCell {
+  padding: var(--space-3) var(--space-4);
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* ===== CELL VALUES ===== */
+
+.cellIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.checkUs {
+  color: var(--primary-amber);
+}
+
+.checkThem {
+  color: var(--success-text);
+}
+
+.xMark {
+  color: var(--error-text);
+  opacity: 0.7;
+}
+
+.dash {
+  color: var(--text-disabled);
+}
+
+.cellText {
+  font-size: 13px;
+  color: var(--text-tertiary);
+  font-style: italic;
+  position: relative;
+}
+
+.textUs {
+  color: var(--primary-light);
+  font-style: normal;
+  font-weight: 500;
+}
+
+.noteMarker {
+  color: var(--accent-gold);
+  font-size: 11px;
+  font-weight: 600;
+  margin-left: 2px;
+  vertical-align: super;
+  font-style: normal;
+}
+
+/* ===== FOOTNOTES ===== */
+
+.footnotes {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.footnote {
+  font-size: 12px;
+  color: var(--text-disabled);
+  line-height: 1.5;
+}
+
+.footnoteMarker {
+  color: var(--accent-gold);
+  font-weight: 600;
+  margin-right: var(--space-1);
+}
+
+/* ===== RESPONSIVE - TABLET ===== */
+
+@media (max-width: 900px) {
+  .section {
+    padding: var(--space-16) var(--space-4);
+  }
+
+  .tableWrapper {
+    border-radius: var(--radius-lg);
+  }
+
+  .featureHeader,
+  .companyHeader {
+    padding: var(--space-3);
+  }
+
+  .companyName {
+    font-size: 12px;
+  }
+
+  .companySubtext {
+    font-size: 10px;
+  }
+
+  .featureCell,
+  .valueCell {
+    padding: var(--space-2) var(--space-3);
+  }
+
+  .featureCell {
+    font-size: 13px;
+  }
+
+  .cellText {
+    font-size: 11px;
+  }
+}
+
+/* ===== RESPONSIVE - MOBILE ===== */
+
+@media (max-width: 600px) {
+  .section {
+    padding: var(--space-12) var(--space-3);
+  }
+
+  .header {
+    margin-bottom: var(--space-8);
+  }
+
+  .tableWrapper {
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-6);
+  }
+
+  .featureHeader {
+    width: 40%;
+    font-size: 10px;
+  }
+
+  .companyHeader {
+    width: 30%;
+    padding: var(--space-2);
+  }
+
+  .companyName {
+    font-size: 10px;
+  }
+
+  .companySubtext {
+    display: none;
+  }
+
+  .featureCell {
+    font-size: 12px;
+    padding: var(--space-2);
+  }
+
+  .valueCell {
+    padding: var(--space-2);
+  }
+
+  .cellIcon svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .cellText {
+    font-size: 10px;
+  }
+
+  .footnotes {
+    padding: 0 var(--space-2);
+  }
+
+  .footnote {
+    font-size: 11px;
+  }
+}
+
+/* ===== REDUCED MOTION ===== */
+
+@media (prefers-reduced-motion: reduce) {
+  .row {
+    opacity: 1;
+    transform: none;
+    transition: background 0.2s ease;
+  }
+}

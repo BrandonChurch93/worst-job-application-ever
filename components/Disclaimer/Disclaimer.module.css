@@ -1,0 +1,227 @@
+/* ============================================
+   FINAL CTA SECTION
+   Premium call-to-action before footer
+   ============================================ */
+
+.section {
+  position: relative;
+  padding: var(--space-16) var(--space-6);
+  background: var(--bg-void);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== BACKGROUND ===== */
+
+.backgroundGradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    radial-gradient(ellipse 60% 40% at 50% 0%, rgba(234, 88, 12, 0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 80% 50% at 50% 100%, rgba(245, 158, 11, 0.04) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* ===== CONTAINER ===== */
+
+.container {
+  position: relative;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* ===== CTA SECTION ===== */
+
+.ctaSection {
+  text-align: center;
+  padding: var(--space-10) var(--space-6);
+  background: linear-gradient(
+    135deg,
+    rgba(234, 88, 12, 0.08) 0%,
+    rgba(245, 158, 11, 0.04) 50%,
+    rgba(234, 88, 12, 0.08) 100%
+  );
+  border: 1px solid rgba(234, 88, 12, 0.15);
+  border-radius: var(--radius-xl);
+  position: relative;
+  overflow: hidden;
+}
+
+.ctaSection::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(234, 88, 12, 0.4) 50%,
+    transparent 100%
+  );
+}
+
+.ctaContent {
+  position: relative;
+  z-index: 1;
+}
+
+.ctaIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  margin-bottom: var(--space-5);
+  color: var(--primary-amber);
+  background: rgba(245, 158, 11, 0.15);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  border-radius: var(--radius-xl);
+}
+
+.ctaTitle {
+  font-size: clamp(26px, 5vw, 38px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin-bottom: var(--space-3);
+}
+
+.ctaSubtitle {
+  max-width: 450px;
+  margin: 0 auto var(--space-6);
+  font-size: 16px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.ctaButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: 18px 40px;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: white;
+  background: linear-gradient(135deg, var(--primary-orange) 0%, var(--primary-amber) 100%);
+  border: none;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 1px rgba(234, 88, 12, 0.2),
+    0 4px 20px rgba(234, 88, 12, 0.4),
+    0 8px 40px rgba(10, 9, 8, 0.4);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ctaButton::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.2) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.ctaButton:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 0 0 1px rgba(234, 88, 12, 0.3),
+    0 8px 30px rgba(234, 88, 12, 0.5),
+    0 16px 60px rgba(10, 9, 8, 0.5),
+    0 0 80px rgba(234, 88, 12, 0.2);
+}
+
+.ctaButton:hover::before {
+  opacity: 1;
+}
+
+.ctaButton:active {
+  transform: translateY(-1px);
+}
+
+.ctaArrow {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ctaButton:hover .ctaArrow {
+  transform: translateX(4px);
+}
+
+.ctaDisclaimer {
+  margin-top: var(--space-4);
+  font-size: 13px;
+  color: var(--text-disabled);
+  letter-spacing: 0.01em;
+  font-style: italic;
+}
+
+/* ===== RESPONSIVE - TABLET ===== */
+
+@media (max-width: 900px) {
+  .section {
+    padding: var(--space-12) var(--space-5);
+  }
+}
+
+/* ===== RESPONSIVE - MOBILE ===== */
+
+@media (max-width: 600px) {
+  .section {
+    padding: var(--space-10) var(--space-4);
+  }
+
+  .ctaSection {
+    padding: var(--space-8) var(--space-4);
+  }
+
+  .ctaIcon {
+    width: 56px;
+    height: 56px;
+  }
+
+  .ctaSubtitle {
+    font-size: 15px;
+  }
+
+  .ctaButton {
+    width: 100%;
+    padding: 16px 32px;
+  }
+
+  .ctaDisclaimer {
+    font-size: 12px;
+  }
+}
+
+/* ===== REDUCED MOTION ===== */
+
+@media (prefers-reduced-motion: reduce) {
+  .section {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .ctaButton:hover {
+    transform: none;
+  }
+
+  .ctaArrow {
+    transition: none;
+  }
+}

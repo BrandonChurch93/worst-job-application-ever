@@ -1,0 +1,120 @@
+.card {
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  max-width: 500px;
+  width: 100%;
+  transition: all var(--duration-slow) var(--ease-smooth);
+}
+
+.card.complete {
+  border-color: var(--success-border);
+  box-shadow: 0 0 0 1px var(--success-border), 0 12px 48px rgba(10, 9, 8, 0.7),
+    inset 0 1px 0 rgba(132, 204, 22, 0.1), var(--glow-amber);
+}
+
+.header {
+  margin-bottom: var(--space-4);
+}
+
+.title {
+  font-size: var(--text-label);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  transition: color var(--duration-normal) var(--ease-smooth);
+}
+
+.card.complete .title {
+  color: var(--success-text);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-bottom: var(--space-6);
+}
+
+.progress {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.progressText {
+  font-size: var(--text-caption);
+  font-weight: 600;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.progressBar {
+  width: 100%;
+  height: 6px;
+  background: rgba(68, 64, 60, 0.3);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: var(--gradient-primary);
+  border-radius: var(--radius-full);
+  transition: width var(--duration-slow) var(--ease-smooth);
+  box-shadow: var(--glow-orange);
+}
+
+.completeMessage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-6);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--border-subtle);
+  animation: fadeInScale 0.5s var(--ease-bounce);
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.emoji {
+  font-size: 32px;
+  animation: bounce 0.6s var(--ease-bounce);
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.proceedingText {
+  font-size: var(--text-body-sm);
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .card {
+    padding: var(--space-4);
+  }
+}
