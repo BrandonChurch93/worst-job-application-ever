@@ -401,14 +401,14 @@
   font-weight: 700;
   line-height: 1.3;
   text-align: center;
-  background: rgba(10, 9, 8, 0.95);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(10, 9, 8, 0.5);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   padding: 12px 24px;
   border-radius: 12px;
   border: 2px solid rgba(234, 88, 12, 0.3);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8),
-    0 0 20px rgba(234, 88, 12, 0.3),
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4),
+    0 0 20px rgba(234, 88, 12, 0.2),
     inset 0 1px 0 rgba(245, 158, 11, 0.2);
   animation: breathe 2s ease-in-out infinite;
   max-width: 90%;
@@ -2138,7 +2138,7 @@
   }
 
   .canvasContainer {
-    max-height: 50vh;
+    max-height: 60vh; /* Increased from 50vh to give more room for stacking */
   }
 
   .statBadge {
@@ -2298,7 +2298,7 @@
   }
 
   .canvasContainer {
-    max-height: 48vh;
+    max-height: 58vh; /* Increased from 48vh to allow 10 blocks to stack */
   }
 
   .statBadge {
