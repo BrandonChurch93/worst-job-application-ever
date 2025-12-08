@@ -1060,7 +1060,13 @@ export default function StackingGame() {
     setTimeout(() => {
       const quality = checkPlacementQuality(body);
       let isActuallyStacked = false;
-      const stackThreshold = 100 * blockScaleRatioRef.current;
+
+      // Stack threshold scales with both block size AND canvas height for tall viewports
+      // This ensures blocks don't get rejected as "not stacked" on tall tablet/desktop canvases
+      const baseThreshold = 100 * blockScaleRatioRef.current;
+      const canvasHeight = canvasHeightRef.current;
+      const heightBonus = canvasHeight > 600 ? (canvasHeight - 600) * 0.15 : 0;
+      const stackThreshold = baseThreshold + heightBonus;
 
       if (towerBodiesRef.current.length === 0) {
         isActuallyStacked = body.position.y > gameState.groundY - stackThreshold;
