@@ -255,7 +255,7 @@
 @media (min-width: 768px) {
   .canvasContainer {
     max-width: 600px; /* ⚠️ DO NOT CHANGE */
-    max-height: 94dvh; /* ⚠️ DO NOT CHANGE - Calibrated for iPad Mini/Pro */
+    max-height: 94vh; /* ⚠️ DO NOT CHANGE - Calibrated for iPad Mini/Pro */
   }
 }
 
@@ -263,7 +263,7 @@
 @media (min-width: 1024px) {
   .canvasContainer {
     max-width: 700px; /* ⚠️ DO NOT CHANGE */
-    max-height: 82dvh; /* ⚠️ DO NOT CHANGE - Calibrated for MacBook 16" */
+    max-height: 82vh; /* ⚠️ DO NOT CHANGE - Calibrated for MacBook 16" */
   }
 }
 
@@ -272,7 +272,7 @@
   .canvasContainer {
     max-width: 700px; /* ⚠️ DO NOT CHANGE */
     aspect-ratio: 5 / 7; /* ⚠️ DO NOT CHANGE - Shorter for 4K */
-    max-height: 65dvh; /* ⚠️ DO NOT CHANGE - Conservative 4K height */
+    max-height: 65vh; /* ⚠️ DO NOT CHANGE - Conservative 4K height */
   }
 }
 
@@ -1550,7 +1550,7 @@
 
 .towerScreenshot img {
   max-width: min(350px, 85vw);
-  max-height: min(300px, 35dvh);
+  max-height: min(300px, 35vh);
   border: 3px solid #ea580c;
   border-radius: 12px;
   box-shadow: 0 0 30px rgba(234, 88, 12, 0.4),
@@ -1948,7 +1948,7 @@
 .roastImage {
   display: block;
   max-width: min(450px, 90vw);
-  max-height: 50dvh;
+  max-height: 50vh;
   width: auto;
   height: auto;
   object-fit: contain;
@@ -1972,7 +1972,7 @@
 
   .roastImage {
     max-width: min(400px, 85vw);
-    max-height: 45dvh;
+    max-height: 45vh;
   }
 }
 
@@ -1984,7 +1984,7 @@
 
   .roastImage {
     max-width: 90vw;
-    max-height: 50dvh;
+    max-height: 50vh;
   }
 }
 
@@ -2000,7 +2000,7 @@
   }
 
   .roastImage {
-    max-height: 38dvh;
+    max-height: 38vh;
   }
 
   .roastImageWrapper {
@@ -2019,7 +2019,7 @@
   }
 
   .roastImage {
-    max-height: 32dvh;
+    max-height: 32vh;
   }
 
   .roastImageWrapper {
@@ -2040,7 +2040,7 @@
   }
 
   .roastImage {
-    max-height: 25dvh;
+    max-height: 25vh;
   }
 
   .roastImageWrapper {
@@ -2115,7 +2115,7 @@
 
   .gameContentWrapper {
     gap: 12px;
-    max-height: 100dvh;
+    max-height: 100vh;
   }
 
   .gameHeader h1 {
@@ -2129,7 +2129,7 @@
   }
 
   .canvasContainer {
-    max-height: 50dvh;
+    max-height: 50vh;
   }
 
   .statBadge {
@@ -2229,7 +2229,7 @@
 
   .gameContentWrapper {
     gap: 8px;
-    max-height: 100dvh;
+    max-height: 100vh;
   }
 
   .gameHeader h1 {
@@ -2243,7 +2243,7 @@
   }
 
   .canvasContainer {
-    max-height: 55dvh;
+    max-height: 55vh;
     flex-shrink: 1;
   }
 
@@ -2289,7 +2289,7 @@
   }
 
   .canvasContainer {
-    max-height: 48dvh;
+    max-height: 48vh;
   }
 
   .statBadge {
