@@ -10,6 +10,13 @@
    ============================================ */
 
 :root {
+  /* ===== DYNAMIC VIEWPORT HEIGHT ===== */
+  /* Fallback for browsers that don't support dvh */
+  --vh-full: 100vh;
+  /* Modern browsers will use dvh (dynamic viewport height) */
+  /* which accounts for mobile browser chrome (URL bar, nav buttons) */
+  --vh-full: 100dvh;
+
   /* ===== BACKGROUNDS - WARM BLACK CANVAS ===== */
   --bg-void: #0a0908;
   --bg-dark: #1c1917;
@@ -247,7 +254,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   position: relative;
-  min-height: 100vh;
+  min-height: var(--vh-full);
 }
 
 a {

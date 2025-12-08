@@ -4,7 +4,7 @@
 
 .landingPage {
   position: relative;
-  min-height: 100vh;
+  min-height: 100dvh;
   background: var(--bg-void);
   overflow-x: hidden;
 }
