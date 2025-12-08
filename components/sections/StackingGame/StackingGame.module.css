@@ -255,7 +255,8 @@
 @media (min-width: 768px) {
   .canvasContainer {
     max-width: 600px; /* ⚠️ DO NOT CHANGE */
-    max-height: 94vh; /* ⚠️ DO NOT CHANGE - Calibrated for iPad Mini/Pro */
+    aspect-ratio: 5 / 8; /* Tablet-specific ratio - shorter than mobile 5/9 */
+    max-height: 70vh; /* Reduced from 94vh to prevent blocks falling too far */
   }
 }
 
