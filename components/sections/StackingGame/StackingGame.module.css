@@ -1608,16 +1608,18 @@
 
 @media (max-width: 500px) {
   .gameOverStats {
-    gap: 12px;
+    gap: 8px;
+    flex-wrap: nowrap;
   }
 
   .gameOverStat {
-    padding: 10px 16px;
-    min-width: 90px;
+    padding: 8px 12px;
+    min-width: auto;
+    flex: 1;
   }
 
   .gameOverStat span {
-    font-size: 20px;
+    font-size: 18px;
   }
 }
 
@@ -1651,9 +1653,10 @@
 
 @media (max-width: 500px) {
   .gameOverMessage {
-    font-size: 17px;
-    padding: 20px 23px;
-    line-height: 1.7;
+    font-size: 15px;
+    padding: 16px 12px;
+    line-height: 1.6;
+    max-width: 100%;
   }
 }
 
@@ -1890,6 +1893,11 @@
   .roastTitle {
     font-size: 24px;
     margin-bottom: 32px;
+    padding: 0 var(--space-2);
+  }
+
+  .roastTitleText {
+    white-space: normal;
   }
 
   .roastEmoji {
