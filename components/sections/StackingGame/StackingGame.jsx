@@ -1068,6 +1068,21 @@ export default function StackingGame() {
       const heightBonus = canvasHeight > 600 ? (canvasHeight - 600) * 0.15 : 0;
       const stackThreshold = baseThreshold + heightBonus;
 
+      // DEBUG: Log values to understand iPad Pro behavior (remove after debugging)
+      console.log('DROP DEBUG:', {
+        canvasHeight,
+        canvasWidth: canvasWidthRef.current,
+        blockScaleRatio: blockScaleRatioRef.current,
+        baseThreshold,
+        heightBonus,
+        stackThreshold,
+        bodyY: body.position.y,
+        groundY: gameState.groundY,
+        groundYMinusThreshold: gameState.groundY - stackThreshold,
+        wouldBeStacked: body.position.y > gameState.groundY - stackThreshold,
+        towerLength: towerBodiesRef.current.length
+      });
+
       if (towerBodiesRef.current.length === 0) {
         isActuallyStacked = body.position.y > gameState.groundY - stackThreshold;
       } else {
