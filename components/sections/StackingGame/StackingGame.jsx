@@ -194,6 +194,7 @@ export default function StackingGame() {
   const isGameOverRef = useRef(false);
   const objectsStackedRef = useRef(0);
   const hasPassedThresholdRef = useRef(false);
+  const isSettlingRef = useRef(false); // Grace period after block drop to let it settle
 
   // Game state
   const [gameState, setGameState] = useState({
@@ -1045,6 +1046,7 @@ export default function StackingGame() {
     body.isFloating = false;
 
     isHoldingObjectRef.current = false;
+    isSettlingRef.current = true; // Start settling grace period
 
     setGameState(prev => ({
       ...prev,
@@ -1110,6 +1112,11 @@ export default function StackingGame() {
 
       // Add to tower using ref
       towerBodiesRef.current = [...towerBodiesRef.current, body];
+
+      // End settling grace period after block has had time to physically settle
+      setTimeout(() => {
+        isSettlingRef.current = false;
+      }, 800);
 
       setGameState(prev => {
         const newObjectsStacked = prev.objectsStacked + 1;
@@ -1257,7 +1264,8 @@ export default function StackingGame() {
       }
 
       // Tower stability checking - triggers loss if tower falls before threshold
-      if (!isGameOverRef.current && objectsStackedRef.current > 0) {
+      // Skip during settling period to allow blocks time to land and stabilize
+      if (!isGameOverRef.current && objectsStackedRef.current > 0 && !isSettlingRef.current) {
         if (checkTowerFallenRef.current() || !checkTowerStabilityRef.current()) {
           if (!isHoldingObjectRef.current && !hasPassedThresholdRef.current) {
             endGameRef.current(false);
@@ -1649,6 +1657,7 @@ export default function StackingGame() {
     isGameOverRef.current = false;
     objectsStackedRef.current = 0;
     hasPassedThresholdRef.current = false;
+    isSettlingRef.current = false;
 
     // Reset game state
     setGameState({
