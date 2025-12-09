@@ -519,11 +519,17 @@ export default function StackingGame() {
   const showFloatingText = useCallback((x, y, text, type = 'good') => {
     if (!particleContainerRef.current) return;
 
+    // Clamp coordinates to stay within visible canvas bounds
+    const canvasWidth = canvasWidthRef.current;
+    const canvasHeight = canvasHeightRef.current;
+    const clampedX = Math.max(50, Math.min(x, canvasWidth - 50));
+    const clampedY = Math.max(50, Math.min(y, canvasHeight - 50));
+
     const floatingText = document.createElement('div');
     floatingText.className = `${styles.floatingText} ${styles[type]}`;
     floatingText.textContent = text;
-    floatingText.style.left = x + 'px';
-    floatingText.style.top = y + 'px';
+    floatingText.style.left = clampedX + 'px';
+    floatingText.style.top = clampedY + 'px';
 
     particleContainerRef.current.appendChild(floatingText);
     setTimeout(() => floatingText.remove(), 1050); // Slightly longer than 1000ms animation
