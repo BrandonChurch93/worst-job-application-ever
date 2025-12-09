@@ -1061,27 +1061,10 @@ export default function StackingGame() {
       const quality = checkPlacementQuality(body);
       let isActuallyStacked = false;
 
-      // Stack threshold scales with both block size AND canvas height for tall viewports
-      // This ensures blocks don't get rejected as "not stacked" on tall tablet/desktop canvases
-      const baseThreshold = 100 * blockScaleRatioRef.current;
+      // Stack threshold scales with canvas height to handle varying viewport sizes
+      // First block just needs to be in the lower portion of the canvas to count as "stacked"
       const canvasHeight = canvasHeightRef.current;
-      const heightBonus = canvasHeight > 600 ? (canvasHeight - 600) * 0.15 : 0;
-      const stackThreshold = baseThreshold + heightBonus;
-
-      // DEBUG: Log values to understand iPad Pro behavior (remove after debugging)
-      console.log('DROP DEBUG:', {
-        canvasHeight,
-        canvasWidth: canvasWidthRef.current,
-        blockScaleRatio: blockScaleRatioRef.current,
-        baseThreshold,
-        heightBonus,
-        stackThreshold,
-        bodyY: body.position.y,
-        groundY: gameState.groundY,
-        groundYMinusThreshold: gameState.groundY - stackThreshold,
-        wouldBeStacked: body.position.y > gameState.groundY - stackThreshold,
-        towerLength: towerBodiesRef.current.length
-      });
+      const stackThreshold = canvasHeight * 0.5; // Block must be in bottom half of canvas
 
       if (towerBodiesRef.current.length === 0) {
         isActuallyStacked = body.position.y > gameState.groundY - stackThreshold;
