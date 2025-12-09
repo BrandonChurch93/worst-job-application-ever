@@ -469,8 +469,10 @@ export default function StackingGame() {
     const bounds = body.bounds;
     const width = bounds.max.x - bounds.min.x;
     const height = bounds.max.y - bounds.min.y;
-    const x = body.position.x;
-    const y = body.position.y;
+    // Use bounding box center instead of body.position (center of mass)
+    // This ensures the glow aligns with the visual block, not the physics center
+    const x = (bounds.min.x + bounds.max.x) / 2;
+    const y = (bounds.min.y + bounds.max.y) / 2;
 
     // Set glow color based on intensity
     const glowColor = intensity === 'perfect'
