@@ -464,15 +464,31 @@ export default function StackingGame() {
 
   // Create block glow pulse effect - glows directly on the placed block
   const createBlockGlow = useCallback((body, intensity = 'normal') => {
-    if (!particleContainerRef.current || !body || !body.bounds) return;
+    if (!particleContainerRef.current || !canvasContainerRef.current || !body || !body.bounds) return;
 
     const bounds = body.bounds;
-    const width = bounds.max.x - bounds.min.x;
-    const height = bounds.max.y - bounds.min.y;
-    // Use bounding box center instead of body.position (center of mass)
-    // This ensures the glow aligns with the visual block, not the physics center
-    const x = (bounds.min.x + bounds.max.x) / 2;
-    const y = (bounds.min.y + bounds.max.y) / 2;
+
+    // Calculate scale factor between canvas pixel dimensions and CSS rendered size
+    // This ensures glow positions match across different viewport sizes
+    const container = canvasContainerRef.current;
+    const cssWidth = container.clientWidth;
+    const cssHeight = container.clientHeight;
+    const canvasWidth = canvasWidthRef.current;
+    const canvasHeight = canvasHeightRef.current;
+    const scaleX = cssWidth / canvasWidth;
+    const scaleY = cssHeight / canvasHeight;
+
+    // Get bounding box dimensions and center in canvas coordinates
+    const rawWidth = bounds.max.x - bounds.min.x;
+    const rawHeight = bounds.max.y - bounds.min.y;
+    const rawX = (bounds.min.x + bounds.max.x) / 2;
+    const rawY = (bounds.min.y + bounds.max.y) / 2;
+
+    // Scale to CSS coordinates
+    const x = rawX * scaleX;
+    const y = rawY * scaleY;
+    const width = rawWidth * scaleX;
+    const height = rawHeight * scaleY;
 
     // Set glow color based on intensity
     const glowColor = intensity === 'perfect'
@@ -1273,9 +1289,12 @@ export default function StackingGame() {
 
       // Tower stability checking - triggers loss if tower falls before threshold
       // Skip during settling period to allow blocks time to land and stabilize
+      // Note: We removed the isHoldingObjectRef check because the settling period
+      // already provides the grace period, and isHoldingObjectRef becomes true again
+      // when a new block spawns (before settling ends), which was preventing game over
       if (!isGameOverRef.current && objectsStackedRef.current > 0 && !isSettlingRef.current) {
         if (checkTowerFallenRef.current() || !checkTowerStabilityRef.current()) {
-          if (!isHoldingObjectRef.current && !hasPassedThresholdRef.current) {
+          if (!hasPassedThresholdRef.current) {
             endGameRef.current(false);
           }
         }
